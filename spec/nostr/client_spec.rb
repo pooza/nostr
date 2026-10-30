@@ -306,4 +306,14 @@ RSpec.describe Nostr::Client do
       expect(received_message).to eq(['EVENT', event.to_h].to_json)
     end
   end
+
+  describe '#build_websocket_client' do
+    it 'verifies the TLS certificate of the relay' do
+      allow(Faye::WebSocket::Client).to receive(:new)
+
+      client.send(:build_websocket_client, 'wss://relay.example.com')
+
+      expect(Faye::WebSocket::Client).to have_received(:new).with('wss://relay.example.com')
+    end
+  end
 end
