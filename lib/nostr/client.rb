@@ -197,7 +197,7 @@ module Nostr
     # @return [Faye::WebSocket::Client]
     #
     def build_websocket_client(relay_url)
-      Faye::WebSocket::Client.new(relay_url, [], { tls: { verify_peer: false } })
+      Faye::WebSocket::Client.new(relay_url)
     end
   end
 end
